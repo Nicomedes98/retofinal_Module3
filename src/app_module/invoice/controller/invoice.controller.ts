@@ -27,12 +27,14 @@ export class InvoiceController {
 
     @Post(':uuid')
     @UseInterceptors(IncludeNullInterceptor)
+    @UseGuards(AuthGuard)
     async create(@Body() invoice: InvoiceDto, @Param("uuid") uuid: string): Promise<InvoiceDto> {
         return this.invoiceService.createInvoice(invoice, uuid);
     }
 
     @Put(':id')
     @UseInterceptors(IncludeNullInterceptor)
+    @UseGuards(AuthGuard)
     async update(@Param('id') id: string, @Body() invoice: InvoiceDto): Promise<InvoiceDto> {
         const updatedInvoice = this.invoiceService.updateInvoice(id, invoice);
         if (!updatedInvoice) {
@@ -51,6 +53,7 @@ export class InvoiceController {
         return deleted;
     }
     @Patch(':uuid')
+    @UseGuards(AuthGuard)
     @UseInterceptors(IncludeNullInterceptor)
     patchInvoice(@Param('uuid') uuid: string, @Body() invoice: InvoiceDto): InvoiceDto {
         return this.invoiceService.patchInvoice(uuid, invoice)

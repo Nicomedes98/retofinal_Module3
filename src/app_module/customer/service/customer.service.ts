@@ -1,7 +1,7 @@
 import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { CustomerDto } from '../dto/customer.dto';
 import { ICustomer } from '../interfaces/customer.dto';
-import { throwError } from 'rxjs';
+
 
 @Injectable()
 export class CustomerService {
